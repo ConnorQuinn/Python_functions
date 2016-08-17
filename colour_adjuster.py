@@ -1,8 +1,12 @@
 '''
-Colour changing script to update figures consistently.
-Often need to change colours of figures for some reason, e.g. increase contrast
-for  projectors. This script reads in an image. You identify what colour you
-want to change and what colour you want it to be afterwards.
+Function to replace specific colours in a raster figure.
+
+Often you need to change the colour of a raster graphic for some reason, e.g. to increase contrast. Recreating these images can be time consuming. To speed up the process this script reads in an imageand changes the colours for you.
+
+TODO: 
+- Add example of usage
+- Add example of using a colour range, rather than specific colour
+- Add sys and 'if __name__ == main'
 '''
 import os
 from PIL import Image
