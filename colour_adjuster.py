@@ -7,50 +7,52 @@ TODO:
 - Add example of usage
 - Add example of using a colour range, rather than specific colour
 - Add sys and 'if __name__ == main'
+
+
+
+
+#TARGET COLOURS
+#light blue = (65,120,250)  -> HEX: #4178FA
+#dark blue =  (55,50,200)   -> HEX: #3732C8
+#light red =  (255,100,100) -> HEX: #FF6464
+#dark red =   (237,42,44)   -> HEX: #ED2A2C
+
+#DIR = os.path.dirname(os.path.abspath(__file__))
+#IMAGE_DIR = os.path.join(DIR, 'Main_data')
+#OUT_DIR = os.path.join(DIR, 'Main_data')
+
 '''
 import os
+from sys import argv
+import getopt
 from PIL import Image
 import numpy as np
 
 
-# want to change all blue colours to R:59, G:120, B:187
-# The script should find all blues and adjust them to that
+for i, arg in enumerate(argv):
+    print('argument {} is {}'.format(i, arg))
+
+#IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
+#OUT_DIR = '/home/connor/PhD/study_1/outputs/figures/'#
+
+/home/connor/PhD/study_1/outputs/figures/plot_training.png
+
+#image_in = os.path.join(IMAGE_DIR, 'plot_training.png')
+#image_list = os.listdir(IMAGE_DIR)
+#image_out_path = (os.path.join(OUT_DIR, 'adjusted_plot_training.png'))#
+
+#orig_cols = [(65, 120, 250), (55, 50, 200), (225, 2, 2), (255, 100, 100) ]
+#tar_cols = [(122, 194, 254), (0, 0, 160), (233, 28, 22),(255, 187, 187)]
+
+def main(argv):
+    if len(argv) < 5:
+        print('Please provide details of im_in, im_out_path, orig_cols, target_cols')
+    fname, im_in, im_out_path, orig_cols, target_cols = argv
+    im_out = change_colours(im_in, orig_cols, target_cols)
+    im_out.save(image_out_path)
 
 
-# dark blue = (56,83,164)
-# light blue = (64,119,187)
-#Dark red: 180; 16; 16
-#light red: 238; 24; 27 ;   #EE181B
-#Light blue: 44;123;182  ; #2C7BB6
-#Dark blue: 0;0;99
-# R:68, G:118, B:187
-# R:0, G:127, B: 255
-# R:0, G:0, B: 254
-# R:58, G:83, B:165
-# Dark blue =  (red == 0)  & (green == 127) & (blue  == 255)
-# Light red = (red == 242)  & (green == 125) & (blue  == 128)
-# also # Light red = (red == 255)  & (green == 127) & (blue  == 127)
-
-'''
-TARGET COLOURS
-light blue = (65,120,250)  -> HEX: #4178FA
-dark blue =  (55,50,200)   -> HEX: #3732C8
-light red =  (255,100,100) -> HEX: #FF6464
-dark red =   (237,42,44)   -> HEX: #ED2A2C
-'''
-DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_DIR = os.path.join(DIR, 'Main_data')
-OUT_DIR = os.path.join(DIR, 'Main_data')
-
-image_in = os.path.join(IMAGE_DIR, 'Uncorrected_main_bars_jan16.png')
-image_list = os.listdir(IMAGE_DIR)
-image_out_path = (os.path.join(OUT_DIR, 'Adjusted_uncorrected_main_bars_jan16.png'))
-
-
-orig_cols = [(65, 120, 250), (55, 50, 200), (225, 2, 2), (255, 100, 100) ]
-tar_cols = [(122, 194, 254), (0, 0, 160), (233, 28, 22),(255, 187, 187)]
-
-def change_colours(image_in, orig_col, tar_col):
+def change_colours(image_in, orig_cols, tar_cols):
     """Replace specific colours in a raster image.
     
        args: 
@@ -74,8 +76,7 @@ def change_colours(image_in, orig_col, tar_col):
     im_out.show()
     return im_out
 
-
-im_out.save(image_out_path)
-
+if __name__ == "__main__":
+    main(argv[1:])
 
     
