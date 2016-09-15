@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 -------------------------------------------------------------------------------
 Function to replace specific colours in a raster figure.
