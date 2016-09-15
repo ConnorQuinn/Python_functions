@@ -8,9 +8,6 @@ TODO:
 - Add example of using a colour range, rather than specific colour
 - Add sys and 'if __name__ == main'
 
-
-
-
 #TARGET COLOURS
 #light blue = (65,120,250)  -> HEX: #4178FA
 #dark blue =  (55,50,200)   -> HEX: #3732C8
@@ -32,31 +29,33 @@ import numpy as np
 for i, arg in enumerate(argv):
     print('argument {} is {}'.format(i, arg))
 
-#IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
-#OUT_DIR = '/home/connor/PhD/study_1/outputs/figures/'#
+ 
+# IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
+# OUT_DIR = '/home/connor/PhD/study_1/outputs/figures/'
+#
+# image_in = os.path.join(IMAGE_DIR, 'plot_training.png')
+# image_list = os.listdir(IMAGE_DIR)
+# image_out_path = (os.path.join(OUT_DIR, 'adjusted_plot_training.png'))#
+#
+# orig_cols = [(65, 120, 250), (55, 50, 200), (225, 2, 2), (255, 100, 100) ]
+# tar_cols = [(122, 194, 254), (0, 0, 160), (233, 28, 22),(255, 187, 187)]
 
-/home/connor/PhD/study_1/outputs/figures/plot_training.png
 
-#image_in = os.path.join(IMAGE_DIR, 'plot_training.png')
-#image_list = os.listdir(IMAGE_DIR)
-#image_out_path = (os.path.join(OUT_DIR, 'adjusted_plot_training.png'))#
-
-#orig_cols = [(65, 120, 250), (55, 50, 200), (225, 2, 2), (255, 100, 100) ]
-#tar_cols = [(122, 194, 254), (0, 0, 160), (233, 28, 22),(255, 187, 187)]
-
-def main(argv):
-    if len(argv) < 5:
-        print('Please provide details of im_in, im_out_path, orig_cols, target_cols')
-    fname, im_in, im_out_path, orig_cols, target_cols = argv
+def main(argv_args):
+    if len(argv_args) < 5:
+        print('Please provide details of im_in, \
+im_out_path, orig_cols, target_cols')
+    im_in, im_out_path, orig_cols, target_cols = argv_args
+    print im_in
     im_out = change_colours(im_in, orig_cols, target_cols)
-    im_out.save(image_out_path)
+    im_out.save(im_out_path)
 
 
 def change_colours(image_in, orig_cols, tar_cols):
     """Replace specific colours in a raster image.
-    
-       args: 
-       (1) The image that you want to change. 
+
+       args:
+       (1) The image that you want to change.
        (2) A list of colours that you want to remove.
        (3) A list of the colours you want to replace them.
 
@@ -68,9 +67,10 @@ def change_colours(image_in, orig_cols, tar_cols):
     red, green, blue, alpha = data.T
 
     for orig_col, tar_col in zip(orig_cols, tar_cols):
-        # Replace blues with one blue... (leaves alpha values alone...)
-        colours_to_change = (red == orig_col[0])&(green == orig_col[1])&(blue == orig_col[2])
-        data[..., :-1][colours_to_change.T] = tar_col # Transpose back needed
+        colours_to_change = (red == orig_col[0]) and \
+                            (green == orig_col[1]) and \
+                            (blue == orig_col[2])
+        data[..., :-1][colours_to_change.T] = tar_col  # Need to back transpose
 
     im_out = Image.fromarray(data)
     im_out.show()
@@ -78,5 +78,3 @@ def change_colours(image_in, orig_cols, tar_cols):
 
 if __name__ == "__main__":
     main(argv[1:])
-
-    
