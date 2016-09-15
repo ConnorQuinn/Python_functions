@@ -1,7 +1,10 @@
 '''
+-------------------------------------------------------------------------------
 Function to replace specific colours in a raster figure.
 
-Often you need to change the colour of a raster graphic for some reason, e.g. to increase contrast. Recreating these images can be time consuming. To speed up the process this script reads in an imageand changes the colours for you.
+Often you need to change the colour of a raster graphic for some reason, e.g.
+to increase contrast. Recreating these images can be time consuming. To speed
+ up the process this script reads in an image and changes the colours for you.
 
 TODO: 
 - Add example of usage
@@ -26,7 +29,7 @@ import numpy as np
 for i, arg in enumerate(argv):
     print('argument {} is {}'.format(i, arg))
 
-# IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
+    # IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
 # OUT_DIR = '/home/connor/PhD/study_1/outputs/figures/'
 #
 # image_in = os.path.join(IMAGE_DIR, 'plot_training.png')
