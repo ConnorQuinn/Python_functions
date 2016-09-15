@@ -6,7 +6,6 @@ Often you need to change the colour of a raster graphic for some reason, e.g. to
 TODO: 
 - Add example of usage
 - Add example of using a colour range, rather than specific colour
-- Add sys and 'if __name__ == main'
 
 #TARGET COLOURS
 #light blue = (65,120,250)  -> HEX: #4178FA
@@ -19,9 +18,7 @@ TODO:
 #OUT_DIR = os.path.join(DIR, 'Main_data')
 
 '''
-import os
 from sys import argv
-import getopt
 from PIL import Image
 import numpy as np
 
@@ -29,7 +26,6 @@ import numpy as np
 for i, arg in enumerate(argv):
     print('argument {} is {}'.format(i, arg))
 
- 
 # IMAGE_DIR = '/home/connor/PhD/study_1/outputs/figures/'
 # OUT_DIR = '/home/connor/PhD/study_1/outputs/figures/'
 #
